@@ -3,8 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="💚 at First Vue" />
     <Working />
-    <Form :reloadIt="reloadIt"/>
-    <Results />
+    <Form :reloadIt="reloadIt" postForm="post-form"/>
+    <Results/>
   </div>
 </template>
 
@@ -22,12 +22,12 @@ export default {
     Form,
     Results,
   },
-  data:() =>({
-    reload: false
+  data: () => ({
+    reload: false,
   }),
   methods: {
     reloadIt: function () {
-      this.reload = !this.reload
+      this.reload = !this.reload;
     },
   },
 };
