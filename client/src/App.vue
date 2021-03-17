@@ -4,7 +4,7 @@
     <HelloWorld msg="💚 at First Vue" />
     <Working />
     <Form :reloadIt="reloadIt" postForm="post-form"/>
-    <Results/>
+    <Results :reloadIt="reloadIt"/>
   </div>
 </template>
 

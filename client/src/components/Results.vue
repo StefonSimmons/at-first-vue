@@ -3,7 +3,7 @@
     <h1>Results</h1>
     <section class="countries-container">
       <div v-for="country in countries" :key="country.id" class="country-block">
-        <Form v-if="editForm === country.id" />
+        <Form v-if="editForm === country.id" :country="country" :reloadIt="reloadIt"/>
         <div v-else>
           <h4><span>Country:</span> {{ country.country_name }}</h4>
           <h4><span>Capital:</span> {{ country.capital }}</h4>
@@ -24,6 +24,9 @@ export default {
   components: {
     Form,
   },
+  props:{
+    reloadIt: Function
+  },
   data: () => {
     return {
       countries: [],
@@ -35,9 +38,6 @@ export default {
     this.countries = res.data;
   },
   methods: {
-    // handleEdit: async function (countryId){
-    //   await api.put('countries')
-    // }
     openEditForm: function (countryId) {
       this.editForm = countryId;
     },

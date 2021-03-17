@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="handleSubmit()" :class="postForm">
+  <form v-on:submit.prevent="handleSend()" :class="postForm">
     <input
       type="text"
       name="countryName"
@@ -31,6 +31,7 @@ export default {
   props: {
     reloadIt: Function,
     postForm: String,
+    country: Object,
   },
   data: () => ({
     countryInfo: {
@@ -39,13 +40,33 @@ export default {
       population: null,
     },
   }),
+  mounted: function () {
+    if (this.country) {
+      const { country_name, capital, population } = this.country;
+      this.countryInfo = {
+        country_name,
+        capital,
+        population,
+      };
+    }
+  },
   methods: {
+    handleSend: function () {
+      if (this.country) {
+        this.handleEdit(this.country.id);
+      } else {
+        this.handleSubmit();
+      }
+    },
     handleSubmit: async function () {
-      console.log(this.countryInfo);
       await api.post("/countries/", this.countryInfo);
       this.countryInfo.country_name = "";
       this.countryInfo.capital = "";
       this.countryInfo.population = null;
+      this.reloadIt();
+    },
+    handleEdit: async function (countryId) {
+      await api.put(`/countries/${countryId}/`, this.countryInfo);
       this.reloadIt();
     },
   },
@@ -66,8 +87,8 @@ input {
 input::placeholder {
   font-weight: 700;
 }
-input:hover{
-  background:rgba(53, 73, 94, 0.068)
+input:hover {
+  background: rgba(53, 73, 94, 0.068);
 }
 .post-form button {
   height: 20px;
@@ -80,9 +101,9 @@ input:hover{
   background: rgb(53, 73, 94);
   color: rgb(108, 184, 141);
   cursor: pointer;
-  transition: all .25s ease
+  transition: all 0.25s ease;
 }
-.post-form button:hover{
+.post-form button:hover {
   box-shadow: -2px 3px 4px rgb(53, 73, 94);
   transform: scale(1.05);
 }
