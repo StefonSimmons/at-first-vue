@@ -9,7 +9,8 @@
           :reloadIt="reloadIt"
           :exitEditForm="exitEditForm"
         />
-        <div v-else>
+        <div v-else class="country-info">
+          <span class="delete-icon">X</span>
           <h4><span>Country:</span> {{ country.country_name }}</h4>
           <h4><span>Capital:</span> {{ country.capital }}</h4>
           <h4><span>Population:</span> {{ country.population }}</h4>
@@ -90,5 +91,25 @@ export default {
 }
 .button-group .esc-button {
   background: rgb(143, 37, 37);
+}
+.country-info{
+  position: relative;
+  width: 100%
+}
+.delete-icon{
+  color: rgb(143, 37, 37);
+  position: absolute;
+  right: 0px;
+  top: 15px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 360%;
+  transition: all .25s ease-in-out;
+}
+.delete-icon:hover{
+  transform: scale(1.15);
+  background: rgba(91, 184, 132, .2);
+  box-shadow: 0 0 2px 2px rgba(91, 184, 132,.2);
+
 }
 </style>
