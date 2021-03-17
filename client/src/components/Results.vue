@@ -10,7 +10,7 @@
           :exitEditForm="exitEditForm"
         />
         <div v-else class="country-info">
-          <span class="delete-icon">X</span>
+          <span class="delete-icon" v-on:click="deleteCountry(country.id)">X</span>
           <h4><span>Country:</span> {{ country.country_name }}</h4>
           <h4><span>Capital:</span> {{ country.capital }}</h4>
           <h4><span>Population:</span> {{ country.population }}</h4>
@@ -45,6 +45,12 @@ export default {
     const res = await api.get("/countries");
     this.countries = res.data;
   },
+  methods:{
+    deleteCountry: async function (countryId){
+      await api.delete(`/countries/${countryId}/`)
+      this.reloadIt()
+    }
+  }
 };
 </script>
 
