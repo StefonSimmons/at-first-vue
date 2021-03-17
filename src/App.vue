@@ -1,19 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" :key="reload">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="My First App" />
+    <Working />
+    <Form :reloadIt="reloadIt"/>
+    <Results />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import Working from "./components/Work.vue";
+import Form from "./components/Form.vue";
+import Results from "./components/Results.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    Working,
+    Form,
+    Results,
+  },
+  data:() =>({
+    reload: false
+  }),
+  methods: {
+    reloadIt: function () {
+      this.reload = !this.reload
+    },
+  },
+};
 </script>
 
 <style>
