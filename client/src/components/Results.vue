@@ -3,7 +3,12 @@
     <h1>Results</h1>
     <section class="countries-container">
       <div v-for="country in countries" :key="country.id" class="country-block">
-        <Form v-if="editForm === country.id" :country="country" :reloadIt="reloadIt"/>
+        <Form
+          v-if="editForm === country.id"
+          :country="country"
+          :reloadIt="reloadIt"
+          :exitEditForm="exitEditForm"
+        />
         <div v-else>
           <h4><span>Country:</span> {{ country.country_name }}</h4>
           <h4><span>Capital:</span> {{ country.capital }}</h4>
@@ -24,23 +29,20 @@ export default {
   components: {
     Form,
   },
-  props:{
-    reloadIt: Function
+  props: {
+    reloadIt: Function,
+    openEditForm: Function,
+    editForm: Number,
+    exitEditForm: Function,
   },
   data: () => {
     return {
       countries: [],
-      editForm: null,
     };
   },
   mounted: async function () {
     const res = await api.get("/countries");
     this.countries = res.data;
-  },
-  methods: {
-    openEditForm: function (countryId) {
-      this.editForm = countryId;
-    },
   },
 };
 </script>
@@ -62,8 +64,14 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.country-block .button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+}
 .country-block button {
   align-self: center;
+  width: 100px;
   margin-bottom: 20px;
   padding: 10px 15px;
   background: rgb(91, 184, 132);
@@ -71,7 +79,7 @@ export default {
   border-radius: 5px;
   font-weight: 700;
   cursor: pointer;
-  transition: all .25s ease;
+  transition: all 0.25s ease;
 }
 .country-block button:hover {
   transform: scale(1.05);
@@ -79,5 +87,8 @@ export default {
 }
 .country-block span {
   font-weight: 900;
+}
+.button-group .esc-button {
+  background: rgb(143, 37, 37);
 }
 </style>

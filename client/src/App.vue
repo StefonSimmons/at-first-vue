@@ -3,8 +3,13 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="💚 at First Vue" />
     <Working />
-    <Form :reloadIt="reloadIt" postForm="post-form"/>
-    <Results :reloadIt="reloadIt"/>
+    <Form :reloadIt="reloadIt" postForm="post-form" />
+    <Results
+      :reloadIt="reloadIt"
+      :openEditForm="openEditForm"
+      :editForm="editForm"
+      :exitEditForm="exitEditForm"
+    />
   </div>
 </template>
 
@@ -24,10 +29,17 @@ export default {
   },
   data: () => ({
     reload: false,
+    editForm: null,
   }),
   methods: {
     reloadIt: function () {
       this.reload = !this.reload;
+    },
+    openEditForm: function (countryId) {
+      this.editForm = countryId;
+    },
+    exitEditForm: function () {
+      this.editForm = null;
     },
   },
 };

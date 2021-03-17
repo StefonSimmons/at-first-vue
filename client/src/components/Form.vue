@@ -18,7 +18,10 @@
       placeholder="Population"
       v-model.number="countryInfo.population"
     />
-    <button type="submit">Send</button>
+    <div class="button-group">
+      <button v-if="country" class="esc-button" v-on:click="exitEditForm()">Esc</button>
+      <button type="submit">Send</button>
+    </div>
   </form>
 </template>
 
@@ -32,6 +35,7 @@ export default {
     reloadIt: Function,
     postForm: String,
     country: Object,
+    exitEditForm: Function
   },
   data: () => ({
     countryInfo: {
@@ -107,4 +111,5 @@ input:hover {
   box-shadow: -2px 3px 4px rgb(53, 73, 94);
   transform: scale(1.05);
 }
+
 </style>
