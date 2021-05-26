@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Results</h1>
+    <h1>Visited Places</h1>
     <section class="countries-container">
       <div v-for="country in countries" :key="country.id" class="country-block">
         <Form
