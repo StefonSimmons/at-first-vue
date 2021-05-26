@@ -9,18 +9,18 @@
     <input
       type="text"
       name="capital"
-      placeholder="Capital"
+      placeholder="City"
       v-model="countryInfo.capital"
     />
     <input
       type="number"
       name="population"
-      placeholder="Population"
+      placeholder="People Met"
       v-model.number="countryInfo.population"
     />
     <div class="button-group">
       <button v-if="country" class="esc-button" v-on:click="exitEditForm()">Esc</button>
-      <button type="submit">Send</button>
+      <button type="submit">Add</button>
     </div>
   </form>
 </template>

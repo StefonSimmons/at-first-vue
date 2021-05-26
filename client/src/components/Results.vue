@@ -12,8 +12,8 @@
         <div v-else class="country-info">
           <span class="delete-icon" v-on:click="deleteCountry(country.id)">X</span>
           <h4><span>Country:</span> {{ country.country_name }}</h4>
-          <h4><span>Capital:</span> {{ country.capital }}</h4>
-          <h4><span>Population:</span> {{ country.population }}</h4>
+          <h4><span>City:</span> {{ country.capital }}</h4>
+          <h4><span>People Met:</span> {{ country.population }}</h4>
           <button v-on:click="openEditForm(country.id)">Edit</button>
         </div>
       </div>
